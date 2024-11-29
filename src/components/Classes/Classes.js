@@ -6,9 +6,7 @@ import React from 'react';
 
 //const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function Classes() {
-    console.log(process.env);
-    console.log(process.env.REACT_END_BACKEND_URL);
-    console.log(BASE_URL);
+
     const [courses,setCourses]=useState([]);
  
         useEffect(()=>{
