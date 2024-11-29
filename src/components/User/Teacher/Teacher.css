@@ -1,0 +1,35 @@
+.card-header,.btn-primary{
+    color: #fff !important;
+    background-color: #000 !important;
+}
+
+.btn{
+    text-decoration:none;
+}
+
+.text-btn{
+    text-decoration: none;
+}
+
+.text-btn:link,.text-btn:visited{
+    color: #fff;
+}
+
+.text-btn:link:hover,.text-btn:visited:hover{
+    color: #000;
+}
+
+
+.btn:hover{
+    color: #000 !important;
+    background-color: #fff !important;
+}
+
+.text{
+    text-decoration: none;
+    color:#000;
+}
+.logout-text{
+    text-decoration: none;
+    color:#f00
+}

@@ -1,0 +1,31 @@
+.navbar .navbar-brand{
+    color:#fff;
+}
+.navbar .navbar-brand:hover{
+    color:#fff;
+}
+.navbar .nav-link{
+    color: #fff;
+    text-decoration: none !important;
+    margin-right: 20px;
+    transition: height .1s ease;
+}
+
+.nav-dropdown-list .nav-link{
+    background-color: black;
+    color: #fff;
+}
+.navbar .nav-link:hover,.nav-link:visited{ 
+    color:#fff;
+}
+.nav-dropdown-link{
+    color: black !important;
+}
+
+
+
+@media (max-width:576px){
+    .navbar .nav-link{
+        margin-right: 0;
+    }
+}
