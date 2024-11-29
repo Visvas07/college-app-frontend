@@ -3,8 +3,7 @@ import { useEffect,useState } from 'react'
 import './Teacher.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-
-const base_url='http://127.0.0.1:8000/api'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 
 function TeacherDashboard(){
     const [dashboardData,setDashboardData]=useState()
@@ -13,7 +12,7 @@ function TeacherDashboard(){
         document.title="Teacher Dashboard"
         const fetchDashboardData = () =>{
             try {
-                axios.get(base_url+'/teacher-dashboard/'+teacherId)
+                axios.get(BASE_URL+'/api/teacher-dashboard/'+teacherId)
                 .then((res)=>{
                     console.log(res);
                     setDashboardData(res.data);

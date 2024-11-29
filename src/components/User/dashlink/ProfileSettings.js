@@ -2,7 +2,7 @@ import SideMenu from "../SideMenu"
 import { Col, Form, Row,Button } from "react-bootstrap"
 import { useEffect,useState } from "react"
 import axios from "axios"
-const base_url='http://127.0.0.1:8000/api'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function ProfileSettings(){
   const [studentData,setStudentData]=useState({
     'email':'',
@@ -17,7 +17,6 @@ function ProfileSettings(){
   const [errors,setErrors] = useState({});
   const [isLoading,setIsLoading]=useState(false);
   const studentId = localStorage.getItem('studentId');
-  console.log(studentId);
   useEffect(()=>{
     document.title="Profile Settings | Student"
 })
@@ -56,10 +55,8 @@ const validateForm = () =>{
  }
 
   setErrors(newErrors);
-  console.log(newErrors.length);
   
- // console.log(errors)
-  //console.log("What error?");
+
   return Object.keys(newErrors).length === 0;
 }
 
@@ -80,12 +77,11 @@ const handleSubmit = async (e) =>{
           studentFormData.append("profile_photo",studentData.profile_photo);
       }
       try {
-           axios.patch(base_url+'/student/'+studentId,studentFormData,{
+           axios.patch(BASE_URL+'/api/student/'+studentId,studentFormData,{
               headers:{
                   'Content-Type':"multipart/form-data",
               },
           }).then((res)=>{
-            console.log("Success: ",res.data)
           setStudentData({
             'email':'',
             'mobile_no':'',

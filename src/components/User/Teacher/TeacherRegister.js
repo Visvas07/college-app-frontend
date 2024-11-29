@@ -2,7 +2,7 @@ import './Teacher.css'
 import { Form,Row,Col,Button } from 'react-bootstrap'
 import { useEffect,useState } from 'react'
 import axios from 'axios'
-const base_url = 'http://127.0.0.1:8000/api/teacher/'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function TeacherRegister(){
     useEffect(()=>{
         document.title="Teacher Register"
@@ -27,7 +27,6 @@ function TeacherRegister(){
         [event.target.name]:event.target.value
        });
     }
-   // console.log(teacherData);
 
     const validateForm = () =>{
         const newErrors={};
@@ -54,8 +53,7 @@ function TeacherRegister(){
 
         setErrors(newErrors);
         
-       // console.log(errors)
-        //console.log("What error?");
+
         return Object.keys(newErrors).length === 0;
     }
 
@@ -76,13 +74,11 @@ function TeacherRegister(){
                 teacherFormData.append("profile_photo",teacherData.profile_photo);
             }
             try {
-                const response = await axios.post(base_url,teacherFormData,{
+                const response = await axios.post(`${BASE_URL}/api/teacher`,teacherFormData,{
                     headers:{
                         'Content-Type':"multipart/form-data",
                     },
                 });
-                
-                console.log("Success: ",response.data)
                 setTeacherData({
                     'first_name':'',
                     'last_name':'',
@@ -110,29 +106,12 @@ function TeacherRegister(){
                 setIsLoading(false);
             }
         }else{
-            console.log(errors);
             setTeacherData({
                 ...teacherData,
                 'status':'error'
             })
         }
     };
-    // const submitForm = () =>{
-    //     try{
-    //     validateForm();
-    //     const teacherFormData = new FormData();
-    //     teacherFormData.append("first_name",teacherData.first_name);
-    //     teacherFormData.append("last_name",teacherData.last_name);
-    //     teacherFormData.append("username",teacherData.username);
-    //     teacherFormData.append("email",teacherData.email);
-    //     teacherFormData.append("password",teacherData.password);
-        
-    //     }catch(error){
-    //         console.log(error);
-    //     }
-        
-    // }
-
 
     return(
         <div className="container mt-4">

@@ -2,7 +2,7 @@ import { Form,Row,Col, Button } from "react-bootstrap"
 import TeacherSideMenu from "../TeacherSideMenu"
 import { useEffect,useState } from "react"
 import axios from "axios"
-const base_url = 'http://127.0.0.1:8000/api'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function TeacherChangePassword(){
   const [teacherPassword,setTeacherPassword] = useState({
     'oldpassword':'',
@@ -45,12 +45,11 @@ const submitForm = (e)=>{
       confirmpassword:teacherPassword.confirmpassword
     }
     try {
-      axios.patch(base_url+'/teacher-change-password/'+teacherId,payLoad,{
+      axios.patch(BASE_URL+'/api/teacher-change-password/'+teacherId,payLoad,{
         headers:{
           'Content-Type':'application/json'
         }
       }).then((res)=>{
-      console.log("Success: ",res.data)
     setTeacherPassword({
       'oldpassword':'',
     'newpassword':'',
@@ -88,7 +87,6 @@ const submitForm = (e)=>{
       setIsLoading(false);
     }
   }else{
-    console.log(errors);
     setTeacherPassword({
       ...teacherPassword,
       'status':'error'

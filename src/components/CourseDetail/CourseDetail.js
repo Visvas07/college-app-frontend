@@ -3,15 +3,13 @@ import { Link } from "react-router-dom"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Button } from "react-bootstrap"
-import swal from 'sweetalert';
 
-const base_url = 'http://127.0.0.1:8000/api'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function CourseDetail(){
     let {course_id}=useParams()
     const navigate=useNavigate();
     const [enrollStatus,setEnrollStatus]=useState();
     const [courseData,setCourseData]=useState([]);
-    //const [teacherData,setTeacherData]=useState({});
     const [loading,setLoading] = useState(false);
     
     useEffect(()=>{
@@ -32,7 +30,7 @@ function CourseDetail(){
         const fetchCourses = async ()=>{
             try{
                 setLoading(true);
-                const response = await axios.get(`${base_url}/course/${course_id}/teacher`)
+                const response = await axios.get(`${BASE_URL}/api/course/${course_id}/teacher`)
                 setCourseData(response.data)
             }catch(error){
                 console.log("Error: ",error);
@@ -42,10 +40,9 @@ function CourseDetail(){
         }
 
         try{
-             axios.get(base_url+'/fetch-status/'+student_id+'/'+course_id)
+             axios.get(BASE_URL+'/api/fetch-status/'+student_id+'/'+course_id)
              .then((res)=>{
                 if(res.data.bool === true){
-                    console.log("Enroll status: ",res.data);
                     setEnrollStatus('success');
                 }
                 
@@ -60,26 +57,22 @@ function CourseDetail(){
         fetchCourses();
         
     },[course_id,navigate])
-    console.log(enrollStatus);
     const enrollCourse = async () => {
         const student_id = localStorage.getItem("studentId");
         const subject_id = courseData[0]?.subject_details?.id;
-        console.log(student_id);
-        console.log(subject_id);
         if (!student_id || !subject_id) {
             console.error("Missing required data: student_id or subject_id");
             return;
         }
     
         try {
-            const response = await axios.post(`${base_url}/student-enroll-course/${student_id}/${subject_id}`, {
+            const response = await axios.post(`${BASE_URL}/api/student-enroll-course/${student_id}/${subject_id}`, {
                 headers: {
                     "Content-Type": "application/json"
                 }
                 
             });
             window.location.href='/'
-            console.log("Enrollment successful:", response.data);
         } catch (error) {
             console.error("Error during enrollment:", error.response?.data || error);
         }
@@ -100,7 +93,6 @@ function CourseDetail(){
             <div>Error: Course not found</div>
         )
     }
-    console.log(courseData);
 
     return(
         <>
@@ -131,7 +123,6 @@ function CourseDetail(){
                     )
                     
                 ):null}
-                {/* <p><Link to='/' className="btn btn-success">Enroll in this course</Link></p> */}
             </div>
                 </>
             ):(

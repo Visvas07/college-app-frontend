@@ -1,9 +1,9 @@
 import { Button,Table } from "react-bootstrap"
-import { Link,useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import SideMenu from "../SideMenu"
 import { useEffect,useState } from "react"
 import axios from "axios"
-const base_url='http://127.0.0.1:8000/api'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function MyCourses(){
     const [courseData,setCourseData]=useState([]);
     const studentId = localStorage.getItem('studentId');
@@ -12,7 +12,7 @@ function MyCourses(){
         const fetchStudents = () =>{
             
             try {
-                axios.get(base_url+'/fetch-enrolled-courses/'+studentId)
+                axios.get(BASE_URL+'/api/fetch-enrolled-courses/'+studentId)
                 .then((res)=>{
                    setCourseData(res.data)
                 });
@@ -25,7 +25,6 @@ function MyCourses(){
         fetchStudents()
         
     },[studentId])
-    console.log(courseData);
     return(
         <div className="container mt-4">
             <div className="row">

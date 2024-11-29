@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import React from "react";
 
-const BASE_URL = "http://127.0.0.1:8000/api";
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function AllClasses(){
     const [courses,setCourses]=useState([]);
     useEffect(()=>{
         document.title="All Courses";
         try {
-            axios.get(BASE_URL+'/course/').then((response)=>{
+            axios.get(BASE_URL+'/api/course/').then((response)=>{
                 setCourses(response.data)
             })
         } catch (error) {
@@ -17,8 +17,6 @@ function AllClasses(){
         }
         
     },[]);
-    //console.log(teachers); 
-    console.log(courses)
 
     const CourseCards =React.memo(({course})=>{
         return(

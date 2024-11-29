@@ -3,7 +3,7 @@ import { Button,Table } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { useEffect,useState } from "react"
 import axios from "axios"
-const base_url='http://127.0.0.1:8000/api'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function MyTeachers(){
     const [teacherData,setTeacherData] = useState([]);
     const studentId = localStorage.getItem('studentId');
@@ -11,9 +11,8 @@ function MyTeachers(){
         document.title="My Teachers | Student"
         const fetchTeachers = () =>{
             try{
-                axios.get(base_url+'/fetch-enrolled-courses/'+studentId)
+                axios.get(BASE_URL+'/api/fetch-enrolled-courses/'+studentId)
                 .then((res)=>{
-                    console.log(res.data);
                     setTeacherData(res.data);
                 }).catch((err)=>{
                     console.log(err);
@@ -24,7 +23,6 @@ function MyTeachers(){
         }
         fetchTeachers();
     },[studentId])
-    console.log(teacherData);
     return(
         <div className="container">
             <div className="row">

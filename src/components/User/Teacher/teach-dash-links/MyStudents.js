@@ -3,18 +3,17 @@ import TeacherSideMenu from "../TeacherSideMenu"
 import { useEffect,useState } from "react"
 import axios from "axios"
 import { Link, useParams } from "react-router-dom"
-const base_url='http://127.0.0.1:8000/api'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function MyStudents(){
     const [myStudentData,setMyStudentData] = useState([]);
     const teacherId = localStorage.getItem('teacherId');
     let { course_id } = useParams()
-    console.log(course_id);
     useEffect(()=>{
         document.title="My Students | Teacher";
         const fetchStudents = () =>{
             
             try {
-                axios.get(base_url+'/fetch-all-enrolled-students/'+course_id)
+                axios.get(BASE_URL+'/api/fetch-all-enrolled-students/'+course_id)
                 .then((res)=>{
                    setMyStudentData(res.data)
                 });
@@ -27,12 +26,6 @@ function MyStudents(){
         fetchStudents()
         
     },[teacherId,course_id])
-    console.log(myStudentData);
-    //const courseId = mycourseData.map(course => course.id);
-   // console.log(courseId[0]);
-   console.log(JSON.stringify(myStudentData, null, 2));
-
-    //console.log(courseId);
     return(
         <div className="container mt-4">
     <div className="row">

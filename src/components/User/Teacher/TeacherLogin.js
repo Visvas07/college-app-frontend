@@ -2,7 +2,7 @@ import './Teacher.css'
 import { Form,Button } from 'react-bootstrap'
 import { useEffect,useState } from 'react'
 import axios from 'axios'
-const base_url = 'http://127.0.0.1:8000/api/'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function TeacherLogin(){
     
     useEffect(()=>{
@@ -39,8 +39,7 @@ function TeacherLogin(){
                 const teacherFormData = new FormData();
                 teacherFormData.append('username',teacherLoginData.username);
                 teacherFormData.append('password',teacherLoginData.password)
-                const response =  await axios.post(base_url+'teacher-login',teacherFormData);
-                console.log("Success",response.data);
+                const response =  await axios.post(BASE_URL+'/api/teacher-login',teacherFormData);
                 
                 if(response.data.bool===true){
                     setTeacherLoginData({

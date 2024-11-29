@@ -3,7 +3,7 @@ import { Col, Form, Row,Button } from "react-bootstrap"
 import { useEffect,useState } from "react"
 import axios from "axios"
 
-const base_url = 'http://127.0.0.1:8000/api'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function TeacherProfileSettings(){
   const [teacherData,setTeacherData]=useState({
     'email':'',
@@ -15,7 +15,6 @@ function TeacherProfileSettings(){
 const [errors,setErrors] = useState({});
 const [isLoading,setIsLoading]=useState(false);
 const teacherId = localStorage.getItem('teacherId');
-console.log(teacherId);
   useEffect(()=>{
     document.title="Profile Settings | Teacher"
 })
@@ -39,10 +38,7 @@ const validateForm = () =>{
   if(!teacherData.gender) newErrors.gender = "Gender is required"
 
   setErrors(newErrors);
-  console.log(newErrors.length);
   
- // console.log(errors)
-  //console.log("What error?");
   return Object.keys(newErrors).length === 0;
 }
 
@@ -60,12 +56,11 @@ const handleSubmit = async (e) =>{
           teacherFormData.append("profile_photo",teacherData.profile_photo);
       }
       try {
-           axios.patch(base_url+'/teacher/'+teacherId,teacherFormData,{
+           axios.patch(BASE_URL+'/api/teacher/'+teacherId,teacherFormData,{
               headers:{
                   'Content-Type':"multipart/form-data",
               },
           }).then((res)=>{
-            console.log("Success: ",res.data)
           setTeacherData({
               'email':'',
               'mobile_no':'',
@@ -75,7 +70,6 @@ const handleSubmit = async (e) =>{
               'status':'success'
           });
           }).catch((error)=>{
-            console.log("Error: ", error);
             if (error.response) {
               console.error("Response Data: ", error.response.data); // Backend response
               console.error("Response Status: ", error.response.status); // HTTP status
@@ -88,7 +82,6 @@ const handleSubmit = async (e) =>{
           
           
       } catch (error) {
-          console.log("Error: ", error);
           if (error.response) {
             console.error("Response Data: ", error.response.data); // Backend response
             console.error("Response Status: ", error.response.status); // HTTP status
@@ -102,7 +95,6 @@ const handleSubmit = async (e) =>{
           setIsLoading(false);
       }
   }else{
-      console.log(errors);
       setTeacherData({
           ...teacherData,
           'status':'error'

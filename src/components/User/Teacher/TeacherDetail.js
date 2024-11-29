@@ -2,7 +2,7 @@ import { useParams,useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { useEffect,useState } from "react"
 import axios from "axios"
-const base_url = 'http://127.0.0.1:8000/api'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 
 
 function TeacherDetail(){
@@ -25,7 +25,7 @@ function TeacherDetail(){
         }
         const fetchTeacherDetails =() =>{
             try {
-                axios.get(base_url+'/teacher/'+teacher_id)
+                axios.get(BASE_URL+'/api/teacher/'+teacher_id)
                 .then((res)=>{
                     setTeacherData(res.data);
                 }).catch((error)=>{

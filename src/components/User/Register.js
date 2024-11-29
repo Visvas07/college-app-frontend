@@ -3,7 +3,7 @@ import './User.css'
 
 import { useEffect,useState } from 'react'
 import axios from 'axios'
-const base_url = 'http://127.0.0.1:8000/api/student/'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function Register() {
     useEffect(()=>{
         document.title="Student Register";
@@ -32,7 +32,6 @@ function Register() {
          [event.target.name]:event.target.value
         });
      }
-    // console.log(studentData);
  
      const validateForm = () =>{
          const newErrors={};
@@ -100,12 +99,11 @@ function Register() {
                 studentFormData.append("profile_photo",studentData.profile_photo);
             }
             try {
-                const response = await axios.post(base_url,studentFormData,{
+                const response = await axios.post(`${BASE_URL}/api/student/`,studentFormData,{
                     headers:{
                         'Content-Type':"multipart/form-data",
                     },
                 });
-                console.log("Success: ",response.data)
                 setStudentData({
                     'first_name':'',
                     'last_name':'',

@@ -3,7 +3,7 @@ import TeacherSideMenu from "../TeacherSideMenu";
 import { useEffect,useState } from "react";
 import axios from "axios";
 
-const base_url='http://127.0.0.1:8000/api/course/'
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function AddCourse(){
     
     useEffect(()=>{
@@ -44,12 +44,11 @@ function AddCourse(){
                 addCourseFormData.append('course_image',addCourseData);
             }
             try {
-                const response = await axios.post(base_url,addCourseFormData,{
+                const response = await axios.post(`${BASE_URL}/api/course`,addCourseFormData,{
                     headers:{
                         'Content-Type':'multipart/form-data'
                     }
                 });
-                console.log("Success: ",response.data);
                 setAddCourseData({
                     'name':'',
                     'description':'',
@@ -57,7 +56,6 @@ function AddCourse(){
                     'status':'success'
                 })
             } catch (error) {
-                console.log("Errors: ",error.message);
                 setAddCourseData({
                     ...addCourseData,
                     'status':'error'

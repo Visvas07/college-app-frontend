@@ -4,15 +4,18 @@ import { useState,useEffect } from 'react';
 import axios from 'axios';
 import React from 'react';
 
-const BASE_URL = "http://127.0.0.1:8000/api";
+const BASE_URL = process.env.REACT_END_BACKEND_URL;
 function Classes() {
+    console.log(process.env);
+    console.log(process.env.REACT_END_BACKEND_URL);
+    console.log(BASE_URL);
     const [courses,setCourses]=useState([]);
  
         useEffect(()=>{
             document.title="All Courses";
             try {
     
-                axios.get(BASE_URL+'/course/?result=4').then((response)=>{
+                axios.get(BASE_URL+'/api/course/?result=4').then((response)=>{
                     setCourses(response.data)
                 }).catch((error)=> console.log("Error: ",error));
             } catch (error) {
@@ -21,7 +24,6 @@ function Classes() {
             
         },[]);
     
-    console.log(courses)
 
     const CourseCard = React.memo(({ course }) => {
         return(
