@@ -2,7 +2,7 @@ import { Form,Button } from "react-bootstrap"
 import './User.css'
 import { useEffect,useState } from "react"
 import axios from 'axios'
-const BASE_URL = process.env.REACT_END_BACKEND_URL;
+const BASE_URL = process.env.REACT_END_BACKEND_URL || "https://college-app-backend-7m7a.onrender.com";
 
 function Login() {
     useEffect(()=>{
@@ -40,7 +40,7 @@ function Login() {
                 const studentFormData = new FormData();
                 studentFormData.append('username',studentLoginData.username);
                 studentFormData.append('password',studentLoginData.password);
-                const response = await axios.post(BASE_URL+'login',studentFormData);
+                const response = await axios.post(BASE_URL+'/api/login',studentFormData);
 
                 if(response.data.bool ===true){
                     setStudentLoginData({

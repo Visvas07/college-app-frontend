@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import SideMenu from "../SideMenu"
 import { useEffect,useState } from "react"
 import axios from "axios"
-const BASE_URL = process.env.REACT_END_BACKEND_URL;
+const BASE_URL = process.env.REACT_END_BACKEND_URL || "https://college-app-backend-7m7a.onrender.com";
 function MyCourses(){
     const [courseData,setCourseData]=useState([]);
     const studentId = localStorage.getItem('studentId');

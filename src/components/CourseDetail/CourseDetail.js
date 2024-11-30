@@ -4,7 +4,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Button } from "react-bootstrap"
 
-const BASE_URL = process.env.REACT_END_BACKEND_URL;
+const BASE_URL = process.env.REACT_END_BACKEND_URL || "https://college-app-backend-7m7a.onrender.com";
 function CourseDetail(){
     let {course_id}=useParams()
     const navigate=useNavigate();
