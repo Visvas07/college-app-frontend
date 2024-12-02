@@ -52,7 +52,7 @@ function Login() {
                     localStorage.setItem('studentLoginStatus',true);
                     localStorage.setItem('studentId',response.data.student_id);
                     localStorage.setItem('userRole',"student");
-                    window.location.href='/dashboard'
+                    window.location.href=`${BASE_URL}/dashboard`
                 }else{
                     setStudentLoginData({...studentLoginData,'status':'error'})
                 }

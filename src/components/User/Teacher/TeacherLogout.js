@@ -1,7 +1,7 @@
 function TeacherLogout(){
     localStorage.clear();
     
-    window.location.href='/teacher-login'
+    window.location.href=`${BASE_URL}/teacher-login`
     return(
         <div>
         </div>

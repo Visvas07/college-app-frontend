@@ -51,7 +51,7 @@ function TeacherLogin(){
                     localStorage.setItem('teacherLoginStatus',true);
                     localStorage.setItem('teacherId',response.data.teacher_id);
                     localStorage.setItem('userRole',"teacher");
-                    window.location.href='/teacher-dashboard'
+                    window.location.href=`${BASE_URL}/teacher-dashboard`
                 }else{
                     setTeacherLoginData({...teacherLoginData,'status':'error'})
                 }
