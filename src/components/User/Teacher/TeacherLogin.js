@@ -3,6 +3,7 @@ import { Form,Button } from 'react-bootstrap'
 import { useEffect,useState } from 'react'
 import axios from 'axios'
 const BASE_URL = process.env.REACT_END_BACKEND_URL || "https://college-app-backend-7m7a.onrender.com";
+const FRONT_END_URL = "https://college-app-frontend-t2jw.onrender.com";
 function TeacherLogin(){
     
     useEffect(()=>{
@@ -51,7 +52,7 @@ function TeacherLogin(){
                     localStorage.setItem('teacherLoginStatus',true);
                     localStorage.setItem('teacherId',response.data.teacher_id);
                     localStorage.setItem('userRole',"teacher");
-                    window.location.href='/teacher-dashboard'
+                    window.location.href=FRONT_END_URL+'/teacher-dashboard'
                 }else{
                     setTeacherLoginData({...teacherLoginData,'status':'error'})
                 }
