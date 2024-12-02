@@ -2,7 +2,7 @@ import { Card,ListGroup,ListGroupItem } from "react-bootstrap"
 import { Link } from "react-router-dom";
 function SideMenu(){
     return(
-        <Card style={{width: '20rem'}}>
+        <Card style={{width: '10rem'}}>
                 
             <ListGroup variant="flush">
                 <ListGroupItem><Link to='/dashboard' className="text">Dashboard</Link></ListGroupItem>
