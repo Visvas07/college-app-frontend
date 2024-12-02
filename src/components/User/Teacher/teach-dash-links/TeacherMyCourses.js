@@ -3,7 +3,7 @@ import TeacherSideMenu from "../TeacherSideMenu"
 import { useEffect,useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
-const BASE_URL = process.env.REACT_END_BACKEND_URL;
+const BASE_URL = process.env.REACT_END_BACKEND_URL || "https://college-app-backend-7m7a.onrender.com";
 function TeacherMyCourses(){
     const [mycourseData,setMyCourseData] = useState([]);
     const teacherId = localStorage.getItem('teacherId');

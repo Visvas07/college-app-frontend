@@ -3,7 +3,7 @@ import { useEffect,useState } from 'react'
 import './Teacher.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-const BASE_URL = process.env.REACT_END_BACKEND_URL;
+const BASE_URL = process.env.REACT_END_BACKEND_URL || "https://college-app-backend-7m7a.onrender.com";
 
 function TeacherDashboard(){
     const [dashboardData,setDashboardData]=useState()

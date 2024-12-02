@@ -2,7 +2,7 @@ import { Form,Row,Col, Button } from "react-bootstrap"
 import SideMenu from "../SideMenu"
 import { useEffect,useState } from "react"
 import axios from "axios"
-const BASE_URL = process.env.REACT_END_BACKEND_URL;
+const BASE_URL = process.env.REACT_END_BACKEND_URL || "https://college-app-backend-7m7a.onrender.com";
 function ChangePassword(){
   const [studentPassword,setStudentrPassword] = useState({
     'oldpassword':'',
