@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import React from "react";
 
-const BASE_URL = process.env.REACT_END_BACKEND_URL || "https://college-app-backend-7m7a.onrender.com" || "https://college-app-backend-7m7a.onrender.com";
+const BASE_URL = process.env.REACT_END_BACKEND_URL || "https://college-app-backend-7m7a.onrender.com";
 function AllClasses(){
     const [courses,setCourses]=useState([]);
     useEffect(()=>{

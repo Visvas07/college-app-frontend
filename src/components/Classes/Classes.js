@@ -4,11 +4,8 @@ import { useState,useEffect } from 'react';
 import axios from 'axios';
 import React from 'react';
 
-const BASE_URL = process.env.REACT_END_BACKEND_URL || "https://college-app-backend-7m7a.onrender.com" || "https://college-app-backend-7m7a.onrender.com";
+const BASE_URL = process.env.REACT_END_BACKEND_URL || "https://college-app-backend-7m7a.onrender.com";
 function Classes() {
-    console.log(process.env);
-    console.log(process.env.REACT_END_BACKEND_URL);
-    console.log(BASE_URL);
     const [courses,setCourses]=useState([]);
  
         useEffect(()=>{
